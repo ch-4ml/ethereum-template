@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <link data-require="bootstrap@4.0.5" data-semver="4.0.5" rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script data-require="bootstrap@4.0.5" data-semver="4.0.5"
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+</head>
+
+<body style="margin:0px 0px 0px 0px;width:100%;height:100%;
+    background-image:url('./img/bg2.png');
+    background-position:center center">
+
+    <div style="position:absolute;width:400px;height:250px;left:50%;top:50%;margin-left:-200px;margin-top:-125px;">
+        <center>
+            <image src="./img/logining.gif" width="60%"><br>
+                <h2>
+                    <font color="white">사용자 로그인 중...</font>
+                </h2>
+        </center>
+    </div>
+    <script>
+        let account='<%=eth_account%>';
+        setTimeout(()=>{
+            try{
+                // console.log(account);
+                sessionStorage.setItem("account", JSON.stringify(account));
+                location.href="/mainPage";
+            }catch(e){
+                console.log('error' +e);
+            }
+        },100)
+    </script>
+</body>
+
+</html>

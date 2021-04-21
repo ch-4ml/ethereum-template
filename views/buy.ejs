@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <%- include('partials/head') %>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Brand</a>
+                </div>
+        
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/items">items</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Second Link</a></li>
+        
+                    </ul>
+              
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Second Link</a></li>
+                            <script>
+                                let userData = {};
+                                var login_div = document.querySelector(".navbar-right");
+                                try {
+                                    userData = { key: sessionStorage.getItem('account') };
+                                } catch (e) {
+                                    location.href = "/";
+                                }
+                                if(userData.key==null){
+                                    login_div.innerHTML="<li><a href='/login'>로그인</a></li>"
+                                    
+                                }else{
+                                    login_div.innerHTML="<li><a><strong>"+userData.key+"</strong> 님 안녕하세요!</a></li> <li><a href='/mainPage'>마이페이지</a></li> <li><a href='/logout'>로그아웃</a></li>";
+    
+                                }
+                        
+                            </script>
+                   
+                    </ul>
+                
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        
+        <div class="section">
+            <div class="header">
+                <h1> Buy product </h1>
+                <h2> 공산품을 구매합니다</h2>
+            </div>
+            <form action="/buy" method="POST">
+                <input type="text" class="newitem-form" name="owner" placeholder="공산품 판매자 계정주소를 입력하세요"> <br>
+                <input type="text" class="newitem-form" name="money" placeholder="지급할 금액을 입력하세요"> <br>
+                <input class="btn btn-warning newitem-btn" type="submit" id="trade">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
+<script>
+    $("#trade").click(()=>{
+        alert("제품 구매가 완료되었습니다. 계좌잔고를 확인해주세요!");
+    })
+</script>

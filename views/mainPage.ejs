@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <%- include('partials/head') %>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Brand</a>
+            </div>
+    
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/items">items</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Second Link</a></li>
+    
+                </ul>
+          
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Second Link</a></li>
+                        <script>
+                            let userData = {};
+                            var login_div = document.querySelector(".navbar-right");
+                            try {
+                                userData = { key: sessionStorage.getItem('account') };
+                            } catch (e) {
+                                location.href = "/";
+                            }
+                            if(userData.key==null){
+                                login_div.innerHTML="<li><a href='/login'>로그인</a></li>"
+                                
+                            }else{
+                                login_div.innerHTML="<li><a><strong>"+userData.key+"</strong> 님 안녕하세요!</a></li> <li><a href='/mainPage'>마이페이지</a></li> <li><a href='/logout'>로그아웃</a></li>";
+
+                            }
+                    
+                        </script>
+               
+                </ul>
+            
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    
+
+   
+</head>
+
+<body>
+
+    <div class="section">
+        <div class="header">
+            <h1> Index </h1>
+            <h2> 프로젝트를 소개하는 페이지</h2>
+            <font size="4">
+                <div id='username'></div>
+            </font>
+            <font size="1"><br></font>
+            <script>
+                let userName = document.getElementById('username');
+                userName.innerHTML = "<font color='blue' size='5'>" + userData.key
+                    + "</font><font color='black'>님, 반갑습니다!</font>";
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

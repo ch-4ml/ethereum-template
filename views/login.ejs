@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <%- include('partials/head') %>
+    </head>
+    <body>
+        <div class="login-section">
+            <div class="header">            
+                <h1>Login</h1>
+                <h2>로그인하세요!</h2>
+                <hr>
+            </div>
+            
+            <form class="login-form" action="/loginProcess" method="POST">
+                <input class="newitem-form" type="text" name="eth_account" placeholder="현재 이더리움 지갑의 사용자 계좌(공개키)를 입력하세요">  <br>
+                <input class="btn btn-primary newitem-btn" type="submit">
+            </form>
+
+        </div>
+    </body>
+
+</html>

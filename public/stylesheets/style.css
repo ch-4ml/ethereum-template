@@ -1,0 +1,176 @@
+body{
+    background-color: #fafafa;
+}
+
+.section{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.header{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.row{
+    margin-bottom: 30px;
+}
+
+.card{
+    background-color: white;
+    box-shadow: 2px 2px 2px lightgray;
+    height: 450px;
+}
+
+.card .card-image{
+    top: 0;
+    height: 250px;
+    width: auto;
+    background-position-y: 50%;
+    background-image: url('../images/desk.jpg');
+    background-size: cover;
+}
+
+.card-title{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.card-comment{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+    text-align: justify;
+    font-weight: 300;
+    line-height: 28px;
+}
+
+.newitem-form{
+    width: 50%;
+    padding: 10px 25px;
+    margin-bottom: 20px;
+}
+
+.newitem-btn{
+    padding: 10px 25px;
+    width: 10%;
+}
+
+.show-section{
+    width: 1200px;
+    padding: 40px 50px;
+    text-align: center;
+    min-height: 300px;
+    height: auto;
+    background-color: white;
+    box-shadow: 2px 2px 2px lightgray;
+}
+
+
+.admin-section{
+    margin-top: 20px;
+    width: 1200px;
+    padding: 30px 30px;
+    text-align: center;
+    box-shadow: 2px 2px 2px lightgray;
+    background-color: white;
+
+}
+
+.member-image{
+    box-shadow: 2px 2px 2px lightgray;
+    height: 80px;
+    width: 80px;
+    display: table;
+}
+
+.member-name{
+    display: table-cell;
+    margin-top: 15px;
+    vertical-align:middle;
+    font-size: 14px;
+    font-weight: 300;
+}
+.login-form{
+    margin-top: 50px;
+}
+
+.login-section{
+    position: absolute;
+    margin-left: -600px;
+    top: 10%;
+    left:50%; 
+    width: 1200px;
+    padding: 40px 50px;
+    text-align: center;
+    min-height: 300px;
+    height: auto;
+    background-color: white;
+    box-shadow: 2px 2px 2px lightgray;
+}
+
+.item-name{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.item-comment{
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+.item-detail{
+    font-size: 18px;
+    font-weight: 200;
+    margin-top: 50px;
+    text-align: justify !important;
+    line-height: 30px;
+}
+
+.item-sub{
+    margin-bottom: 40px;
+    /* margin-top: 0px; */
+}
+.item-user{
+    font-size: 16px;
+    color: gray;
+    float: left;
+}
+
+.item-button{
+    float: right;
+    margin-left: 20px;
+}
+
+.align-center{
+    text-align: -webkit-center;
+}
+
+
+.newapply-form{
+    width: 80%;
+    margin-top: 15px;
+    padding: 10px 14px;
+
+}
+.newapply-btn{
+    display: block;
+    padding: 10px 40px;
+    margin-top: 20px;
+}
+
+.profile-section{
+    margin-bottom: 40px;
+}
+
+.profile-info{
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+}
