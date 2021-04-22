@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <video autoplay muted loop id="backgroundVideo">
+      <source src="/videos/background.mp4" type="video/mp4">
+    </video>
+    <h1><%= title %></h1>
+    <div class="container">
+      <div class="title">
+        Message : <p id="currentMessage"></p>
+      </div>
+      <div class="subtitle">
+        Block number : <p id="blockNumber"></p>
+      </div>
+      <div class="frame">
+        <div class="title">
+          Update Message
+        </div>
+        <div class="contents">
+          <input type="text" id="inputMessage" class="input-box">
+          <div>
+            <button id="btnUpdateMessage">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- javascript -->
+    <script>
+      document.getElementById("btnUpdateMessage").addEventListener('click', event => {
+        const message = document.getElementById("inputMessage").value;
+        
+        // 서버로 post 요청 보내기
+        fetch()
+      });
+    </script>
+  </body>
+</html>
