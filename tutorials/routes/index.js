@@ -7,14 +7,16 @@ const sc = new web3.eth.Contract(contract.abi, contract.address)
 
 router.get('/', async function(req, res, next) {
   try {
+    // 현재 네트워크에 존재하는 지갑을 가져옴
     const accounts = await web3.eth.getAccounts();
-    const message = await sc.methods;
+    // Contract에서 message라는 이름을 가진 변수의 값을 호출
+    const message = await sc.methods.message().call();
 
     console.log(message);
 
     const data = {
       title: 'My first ethereum application',
-      accounts,
+      accounts,  // accounts: accounts
       message
     };
 
