@@ -1,0 +1,20 @@
+<!-- CDN 방식으로 jQuery javascript 파일 불러오기 -->
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+<!-- CDN 방식으로 bootstrap javascript 파일 불러오기 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+  const pathname = window.location.pathname;
+  const navItems = document.getElementsByClassName("nav-item");
+
+  for(let i = 0; i < navItems.length; i++) {
+    if(navItems[i].children[0].getAttribute("href") === pathname)
+      navItems[i].classList.add("active");
+    else navItems[i].classList.remove("active");
+  }
+
+</script>

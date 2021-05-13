@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+    <header>
+      <%- include('partials/header') %>
+    </header>
+    <footer>
+      <%- include('partials/footer') %>
+    </footer>
+    <!-- javascript -->
+    <script>
+      document.getElementById("btnUpdateMessage").addEventListener('click', event => {
+        const selSender = document.getElementById("selSender");
+        const sender = selSender.options[selSender.selectedIndex].text;
+        const newMessage = document.getElementById("inputMessage").value;
+        const message = document.getElementById("message");
+        const blockNumber = document.getElementById("blockNumber");
+
+        // 서버로 post 요청 보내기
+        fetch("/message", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sender, newMessage })
+        })
+        .then(response => response.json())
+        .then(json => {
+          message.innerHTML = json.message;
+          blockNumber.innerHTML = json.blockNumber;
+        });
+      });
+    </script>
+  </body>
+</html>

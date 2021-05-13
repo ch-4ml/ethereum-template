@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+    <header>
+      <%- include('partials/header') %>
+    </header>
+    <div class="container">
+      <div class="subtitle">
+        Block number: <p id="blockNumber"><%= blockNumber %></p>
+      </div>
+      <div>
+        <nav class="navbar navbar-expand navbar-dark">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item menu">
+                <a class="nav-link active" id="aGetTokenBalance" href="#">Get token balance</a>
+              </li>
+              <li class="nav-item menu">
+                <a class="nav-link" id="aCreateNewTokens" href="#">Create new tokens</a>
+              </li>
+              <li class="nav-item menu">
+                <a class="nav-link" id="aTransferTokens" href="#">Transfer tokens</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="frame active" id="frameGetTokenBalance">
+        <div class="title">Get Token Balance</div>
+        <div class="contents">
+          <div>
+            Address : <select id="selAddressForGetBalance">
+              <% for(let i = 0; i < accounts.length; i++) { %>
+                <option value="<%= i %>"><%= accounts[i] %></option>
+              <% } %>
+            </select>
+          </div>
+          <div>Balance : <p id="balance"></p></div>
+          <div><button id="btnGetBalance">Get balance</button></div>
+        </div>
+      </div>
+      <div class="frame" id="frameCreateNewTokens">
+        <div class="title">Create New Tokens</div>
+        <div class="contents">
+          Address : <select id="selAddressForMint">
+            <% for(let i = 0; i < accounts.length; i++) { %>
+              <option value="<%= i %>"><%= accounts[i] %></option>
+            <% } %>
+          </select>
+          Amount : <input type="number" min=0 id="inputAmountForMint" class="input-box" placeholder="10">
+          <div><button id="btnMint">Mint</button></div>
+        </div>
+      </div>
+      <div class="frame" id="frameTransferTokens">
+        <div class="title">Transfer Tokens</div>
+        <div class="contents">
+          <div>
+            From : <select id="selFromAddress">
+              <% for(let i = 0; i < accounts.length; i++) { %>
+                <option value="<%= i %>"><%= accounts[i] %></option>
+              <% } %>
+            </select>
+          </div>
+          <div>
+            To : <select id="selToAddress">
+              <% for(let i = 0; i < accounts.length; i++) { %>
+                <option value="<%= i %>"><%= accounts[i] %></option>
+              <% } %>
+            </select>
+          </div>
+          <div>
+            Amount : <input type="number" min=0 id="inputAmountForTransfer" class="input-box" placeholder="10">
+          </div>
+          <div><button id="btnTransfer">Transfer</button></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <%- include('partials/footer') %>
+    </footer>
+    <!-- javascript -->
+    <script>
+      const blockNumber = document.getElementById("blockNumber");
+
+      // 선택한 메뉴를 보이게 하기
+      const frames = document.getElementsByClassName("frame");
+      const menus = document.getElementsByClassName("menu");
+      const length = menus.length;
+      for(let i = 0; i < length; i++) {
+        menus[i].addEventListener("click", event => {
+          for(let j = 0; j < length; j++) {
+            menus[j].children[0].classList.remove("active");
+            frames[j].classList.remove("active");
+          }
+          const menuID = event.target.id;
+          const frameID = menuID.replace("a", "frame");
+          document.getElementById(menuID).classList.add("active");
+          document.getElementById(frameID).classList.add("active");
+        });
+      }
+      
+      // 토큰 조회
+      document.getElementById("btnGetBalance").addEventListener("click", event => {
+        const selAddressForGetBalance = document.getElementById("selAddressForGetBalance");
+        const address = selAddressForGetBalance.options[selAddressForGetBalance.selectedIndex].text;
+        const balance = document.getElementById("balance")
+
+        // 서버로 get 요청 보내기
+        fetch(`/my-token/${address}`)
+        .then(response => response.json())
+        .then(json => {
+          balance.innerHTML = json.balance;
+        });
+      });
+
+      // 토큰 생성
+      document.getElementById("btnMint").addEventListener("click", event => {
+        const selAddressForMint = document.getElementById("selAddressForMint");
+        const address = selAddressForMint.options[selAddressForMint.selectedIndex].text;
+        const amount = document.getElementById("inputAmountForMint").value;
+
+        // 서버로 put 요청 보내기
+        fetch(`/my-token/${address}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount })
+        })
+        .then(response => response.json())
+        .then(json => {
+          alert(json.msg);
+          blockNumber.innerHTML = json.blockNumber;
+        });
+      });
+
+      // 토큰 전송
+      document.getElementById("btnTransfer").addEventListener("click", event => {
+        const selFromAddress = document.getElementById("selFromAddress");
+        const selToAddress = document.getElementById("selToAddress");
+        const from = selFromAddress.options[selFromAddress.selectedIndex].text;
+        const to = selToAddress.options[selToAddress.selectedIndex].text;
+        const amount = document.getElementById("inputAmountForTransfer").value;
+
+        // 서버로 post 요청 보내기
+        fetch('/my-token', {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ from, to, amount })
+        })
+        .then(response => response.json())
+        .then(json => {
+          alert(json.msg);
+          blockNumber.innerHTML = json.blockNumber;
+        });
+      });
+    </script>
+  </body>
+</html>
