@@ -14,7 +14,7 @@
       <div class="subtitle">
         Block number: <p id="blockNumber"><%= blockNumber %></p>
       </div>
-      <div class="frame">
+      <div class="frame active">
         <div class="title">
           Update Message
         </div>
@@ -24,7 +24,9 @@
               <option value="<%= i %>"><%= accounts[i] %></option>
             <% } %>
           </select>
-          <input type="text" id="inputMessage" class="input-box" placeholder="Hi">
+          <div>
+            Message: <input type="text" id="inputMessage" class="input-box" placeholder="Hi">
+          </div>
           <div>
             <button id="btnUpdateMessage">Send</button>
           </div>

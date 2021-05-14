@@ -6,8 +6,6 @@ var product_contract = require('../contract/product/contract.js');
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
 var smartContract = new web3.eth.Contract(product_contract.abi, product_contract.address);
 
-
-
 // index
 router.get('/', function (req, res, next) {
   var pro_array=new Array();

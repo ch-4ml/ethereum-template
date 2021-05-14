@@ -96,3 +96,15 @@ button {
 nav {
   padding: 1rem !important;
 }
+
+.flex-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.flex-nowrap p {
+  margin: 0;
+  padding: 0 0 0 1rem;
+}

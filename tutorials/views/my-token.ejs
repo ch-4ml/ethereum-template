@@ -38,7 +38,7 @@
               <% } %>
             </select>
           </div>
-          <div>Balance : <p id="balance"></p></div>
+          <div class="flex-nowrap">Balance : <p id="balance"></p></div>
           <div><button id="btnGetBalance">Get balance</button></div>
         </div>
       </div>
@@ -131,7 +131,7 @@
         .then(response => response.json())
         .then(json => {
           alert(json.msg);
-          blockNumber.innerHTML = json.blockNumber;
+          if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
         });
       });
 
@@ -152,7 +152,7 @@
         .then(response => response.json())
         .then(json => {
           alert(json.msg);
-          blockNumber.innerHTML = json.blockNumber;
+          if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
         });
       });
     </script>
