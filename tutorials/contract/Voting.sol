@@ -11,6 +11,10 @@ contract Voting {
         candidateList = candidateNames;
     }
 
+    function setCandidate(bytes32 candidateName) public {
+        candidateList.push(candidateName);
+    }
+
     function getAllCandidates() public view returns(bytes32[] memory) {
         return candidateList;
     }

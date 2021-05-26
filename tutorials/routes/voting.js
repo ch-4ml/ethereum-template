@@ -11,18 +11,7 @@ router.get("/", async function(req, res, next) {
   try {
     const accounts = await web3.eth.getAccounts();
     const blockNumber = await web3.eth.getBlockNumber();
-    const candidateList = await sc.methods.getAllCandidates().call();
-    console.log(candidateList);
-
-    let candidates = [];
-    for(let candidate of candidateList) {
-      candidates.push({
-        name: web3.utils.toAscii(candidate),
-        votes: await sc.methods.totalVotesFor(candidate).call()
-      });
-    }
-
-    console.log(candidates);
+    const candidates = await getAllCandidates();
 
     const data = {
       title: "Voting example",
@@ -42,14 +31,47 @@ router.get("/", async function(req, res, next) {
 router.put("/", async function(req, res) {
   const name = req.body.name;
   try {
-    const nameToBytes = await web3.utils.fromAscii(name);
-    console.log(nameToBytes);
+    const accounts = await web3.eth.getAccounts();
+    const candidate = await web3.utils.fromAscii(name);
+    await sc.methods.voteForCandidate(candidate).send({ from: accounts[0] });
+    const candidates = await getAllCandidates();
 
-    res.status(200).send();
+    const blockNumber = await web3.eth.getBlockNumber();
+    res.status(200).send({ blockNumber, candidates, msg: `${name}에게 투표했습니다.` });
   } catch(err) {
     console.log(err);
-    res.status(500).send();
+    res.status(200).send({ msg: "투표에 실패했습니다." });
   }
 });
+
+// Add
+router.post("/", async function(req, res) {
+  const name = req.body.name;
+  try {
+    const accounts = await web3.eth.getAccounts();
+    await sc.methods.setCandidate(name).send({ from: accounts[0] });
+    const candidates = await getAllCandidates();
+
+    const blockNumber = await web3.eth.getBlockNumber();
+    res.status(200).send({ blockNumber, candidates, msg: `후보 ${name}을(를) 추가했습니다.` });
+  } catch(err) {
+    console.log(err);
+    res.status(200).send({ msg: "후보를 추가하지 못했습니다." })
+  }
+})
+
+async function getAllCandidates() {
+  const candidateList = await sc.methods.getAllCandidates().call();
+
+  let candidates = [];
+  for(let candidate of candidateList) {
+    candidates.push({
+      name: web3.utils.toAscii(candidate),
+      votes: await sc.methods.totalVotesFor(candidate).call()
+    });
+  }
+
+  return candidates;
+}
 
 module.exports = router;

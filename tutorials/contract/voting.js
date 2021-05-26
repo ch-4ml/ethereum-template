@@ -1,5 +1,18 @@
-const address = "0x9b7a2DAFca0Cef84154335bE5cDB95ab50bbAD24";
+const address = "0x16712dA3a0A861fB2BFb92AdFd9994a08a917c1a";
 const abi = [
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "candidateName",
+        "type": "bytes32"
+      }
+    ],
+    "name": "setCandidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
   {
     "inputs": [
       {

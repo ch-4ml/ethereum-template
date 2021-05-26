@@ -47,7 +47,7 @@ router.put("/:address", async function(req, res) {
     const blockNumber = await web3.eth.getBlockNumber();
     console.log(result);
 
-    res.status(200).send({ blockNumber, msg: "토큰을 성공적으로 생성했습니다." });
+    res.status(200).send({ blockNumber, msg: "토큰을 생성했습니다." });
   } catch(err) {
     console.error(err);
     res.status(200).send({ msg: "토큰 생성에 실패했습니다." });
@@ -60,7 +60,7 @@ router.post("/", async function(req, res) {
     const result = await sc.methods.transfer(to, amount).send({ from });
     const blockNumber = await web3.eth.getBlockNumber();
     console.log(result);
-    res.status(200).send({ blockNumber, msg: "토큰을 성공적으로 전송했습니다."});
+    res.status(200).send({ blockNumber, msg: "토큰을 전송했습니다."});
   } catch(err) {
     console.error(err);
     res.status(200).send({ msg: "토큰 전송에 실패했습니다."});

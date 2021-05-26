@@ -18,9 +18,10 @@
               <li class="nav-item menu">
                 <a class="nav-link active" id="aVoting" href="#">Voting</a>
               </li>
-              <!-- <li class="nav-item menu">
-                <a class="nav-link" id="aAddNewCandidate" href="#">Create new tokens</a>
+              <li class="nav-item menu">
+                <a class="nav-link" id="aSetCandidate" href="#">Set candidate</a>
               </li>
+              <!-- 
               <li class="nav-item menu">
                 <a class="nav-link" id="aTransferTokens" href="#">Transfer tokens</a>
               </li> -->
@@ -39,7 +40,7 @@
                 <th scope="col">Votes</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tbodyCandidates">
               <!-- for loop -->
               <% for(let i = 0; i < candidates.length; i++) { %>
                 <tr>
@@ -56,42 +57,34 @@
           </div>
         </div>
       </div>
-      <div class="frame" id="frameCreateNewTokens">
-        <div class="title">Create New Tokens</div>
+      <div class="frame" id="frameSetCandidate">
+        <div class="title">Set Candidate</div>
         <div class="contents">
-          Address : <select id="selAddressForMint">
-            <% for(let i = 0; i < accounts.length; i++) { %>
-              <option value="<%= i %>"><%= accounts[i] %></option>
-            <% } %>
-          </select>
-          Amount : <input type="number" min=0 id="inputAmountForMint" class="input-box" placeholder="10">
-          <div><button id="btnMint">Mint</button></div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Candidate</th>
+                <th scope="col">Votes</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyCandidates">
+              <!-- for loop -->
+              <% for(let i = 0; i < candidates.length; i++) { %>
+                <tr>
+                  <th scope="row"><%= i %></th>
+                  <td><%= candidates[i].name %></td>
+                  <td><%= candidates[i].votes %></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table> 
+          <div>
+            <input type="text" id="inputNameForSetCandidate" class="input-box">
+            <button id="btnVote">Vote</button>
+          </div>
         </div>
       </div>
-      <div class="frame" id="frameTransferTokens">
-        <div class="title">Transfer Tokens</div>
-        <div class="contents">
-          <div>
-            From : <select id="selFromAddress">
-              <% for(let i = 0; i < accounts.length; i++) { %>
-                <option value="<%= i %>"><%= accounts[i] %></option>
-              <% } %>
-            </select>
-          </div>
-          <div>
-            To : <select id="selToAddress">
-              <% for(let i = 0; i < accounts.length; i++) { %>
-                <option value="<%= i %>"><%= accounts[i] %></option>
-              <% } %>
-            </select>
-          </div>
-          <div>
-            Amount : <input type="number" min=0 id="inputAmountForTransfer" class="input-box" placeholder="10">
-          </div>
-          <div><button id="btnTransfer">Transfer</button></div>
-        </div>
-      </div>
-    </div>
     <footer>
       <%- include('partials/footer') %>
     </footer>
@@ -116,8 +109,9 @@
         });
       }
 
+      // 투표
       document.getElementById("btnVote").addEventListener("click", event => {
-        const name = document.getElementById("inputName").value;
+        const name = document.getElementById("inputNameForSetCandidate").value;
         
         fetch('/voting', {
           method: "PUT",
@@ -128,7 +122,20 @@
         .then(json => {
           alert(json.msg);
           if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
-        })
+          if(json.candidates) {
+            const tbody = document.getElementById("tbodyCandidates");
+            let tbodyContents = "";
+            for(let i = 0; i < json.candidates.length; i++) {
+              tbodyContents += `
+              <tr>
+                <th scope="row">${i}</th>
+                <td>${json.candidates[i].name}</td>
+                <td>${json.candidates[i].votes}</td>
+              </tr>`;
+            }
+            tbody.innerHTML = tbodyContents;
+          }
+        });
       });
     </script>
   </body>
