@@ -108,3 +108,9 @@ nav {
   margin: 0;
   padding: 0 0 0 1rem;
 }
+
+.table {
+  background-color: white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
