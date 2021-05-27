@@ -41,7 +41,8 @@
       document.getElementById("btnUpdateMessage").addEventListener('click', event => {
         const selSender = document.getElementById("selSender");
         const sender = selSender.options[selSender.selectedIndex].text;
-        const newMessage = document.getElementById("inputMessage").value;
+        const inputMessage = document.getElementById("inputMessage");
+        const newMessage = inputMessage.value;
         const message = document.getElementById("message");
         const blockNumber = document.getElementById("blockNumber");
 
@@ -55,6 +56,7 @@
         .then(json => {
           message.innerHTML = json.message;
           blockNumber.innerHTML = json.blockNumber;
+          inputMessage.value = "";
         });
       });
     </script>

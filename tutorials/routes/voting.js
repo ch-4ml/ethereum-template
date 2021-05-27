@@ -6,7 +6,7 @@ const web3 = new Web3("http://localhost:7545");
 const contract = require("../contract/voting.js")
 const sc = new web3.eth.Contract(contract.abi, contract.address)
 
-// Go to "Voting" page
+// Voting 페이지로 이동
 router.get("/", async function(req, res, next) {
   try {
     const accounts = await web3.eth.getAccounts();
@@ -27,7 +27,7 @@ router.get("/", async function(req, res, next) {
   }
 });
 
-// Vote
+// 투표
 router.put("/", async function(req, res) {
   const name = req.body.name;
   try {
@@ -37,6 +37,7 @@ router.put("/", async function(req, res) {
     const candidates = await getAllCandidates();
 
     const blockNumber = await web3.eth.getBlockNumber();
+    
     res.status(200).send({ blockNumber, candidates, msg: `${name}에게 투표했습니다.` });
   } catch(err) {
     console.log(err);
@@ -44,12 +45,15 @@ router.put("/", async function(req, res) {
   }
 });
 
-// Add
+// 후보자 추가
 router.post("/", async function(req, res) {
   const name = req.body.name;
   try {
     const accounts = await web3.eth.getAccounts();
-    await sc.methods.setCandidate(name).send({ from: accounts[0] });
+    const candidate = await web3.utils.fromAscii(name);
+
+    // 작성한 contract에 있는 setCandidate 함수 호출
+    await sc.methods.setCandidate(candidate).send({ from: accounts[0] });
     const candidates = await getAllCandidates();
 
     const blockNumber = await web3.eth.getBlockNumber();
@@ -60,6 +64,7 @@ router.post("/", async function(req, res) {
   }
 })
 
+// 모든 후보자 정보(이름, 득표수)를 조회하는 함수
 async function getAllCandidates() {
   const candidateList = await sc.methods.getAllCandidates().call();
 

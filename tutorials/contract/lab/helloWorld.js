@@ -1,4 +1,4 @@
-const address = "0x705E46f4490330a462B31cA9D0AbD9c56c7c627b";
+const address = "0x22699Fdf9017E40CD3C2Ad0A4efb26A68Cf101FC";
 const abi = [
   {
     "inputs": [
@@ -8,10 +8,12 @@ const abi = [
         "type": "string"
       }
     ],
+    "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
   {
+    "constant": false,
     "inputs": [
       {
         "internalType": "string",
@@ -21,10 +23,12 @@ const abi = [
     ],
     "name": "update",
     "outputs": [],
+    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
+    "constant": true,
     "inputs": [],
     "name": "message",
     "outputs": [
@@ -34,6 +38,7 @@ const abi = [
         "type": "string"
       }
     ],
+    "payable": false,
     "stateMutability": "view",
     "type": "function"
   }

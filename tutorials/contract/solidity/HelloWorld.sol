@@ -1,9 +1,11 @@
-pragma solidity ^0.5.10;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.7.6;
 
 contract HelloWorld {
     string public message;
 
-    constructor(string memory initMessage) public {
+    // 생성자. contract를 배포할 때 호출됨
+    constructor(string memory initMessage) {
         message = initMessage;
     }
 

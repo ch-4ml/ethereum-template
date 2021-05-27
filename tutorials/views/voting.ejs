@@ -52,7 +52,7 @@
             </tbody>
           </table> 
           <div>
-            <input type="text" id="inputName" class="input-box">
+            <input type="text" id="inputNameForVoting" class="input-box">
             <button id="btnVote">Vote</button>
           </div>
         </div>
@@ -81,7 +81,7 @@
           </table> 
           <div>
             <input type="text" id="inputNameForSetCandidate" class="input-box">
-            <button id="btnVote">Vote</button>
+            <button id="btnSetCandidate">Set</button>
           </div>
         </div>
       </div>
@@ -111,8 +111,9 @@
 
       // 투표
       document.getElementById("btnVote").addEventListener("click", event => {
-        const name = document.getElementById("inputNameForSetCandidate").value;
-        
+        const inputName = document.getElementById("inputNameForVoting");
+        const name = inputName.value;
+
         fetch('/voting', {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -123,7 +124,6 @@
           alert(json.msg);
           if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
           if(json.candidates) {
-            const tbody = document.getElementById("tbodyCandidates");
             let tbodyContents = "";
             for(let i = 0; i < json.candidates.length; i++) {
               tbodyContents += `
@@ -133,7 +133,44 @@
                 <td>${json.candidates[i].votes}</td>
               </tr>`;
             }
-            tbody.innerHTML = tbodyContents;
+            const tbodys = document.querySelectorAll("#tbodyCandidates");
+            for(let tbody of tbodys) {
+              tbody.innerHTML = tbodyContents;
+            }
+            inputName.value = "";
+          }
+        });
+      });
+
+      // 후보 추가
+      document.getElementById("btnSetCandidate").addEventListener("click", event => {
+        const inputName = document.getElementById("inputNameForVoting");
+        const name = inputName.value;
+
+        fetch('/voting', {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name })
+        })
+        .then(response => response.json())
+        .then(json => {
+          alert(json.msg);
+          if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
+          if(json.candidates) {
+            let tbodyContents = "";
+            for(let i = 0; i < json.candidates.length; i++) {
+              tbodyContents += `
+              <tr>
+                <th scope="row">${i}</th>
+                <td>${json.candidates[i].name}</td>
+                <td>${json.candidates[i].votes}</td>
+              </tr>`;
+            }
+            const tbodys = document.querySelectorAll("#tbodyCandidates");
+            for(let tbody of tbodys) {
+              tbody.innerHTML = tbodyContents;
+            }
+            inputName.innerHTML = "";
           }
         });
       });

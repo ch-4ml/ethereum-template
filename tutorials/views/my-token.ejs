@@ -120,7 +120,8 @@
       document.getElementById("btnMint").addEventListener("click", event => {
         const selAddressForMint = document.getElementById("selAddressForMint");
         const address = selAddressForMint.options[selAddressForMint.selectedIndex].text;
-        const amount = document.getElementById("inputAmountForMint").value;
+        const inputAmount = document.getElementById("inputAmountForMint");
+        const amount = inputAmount.value;
 
         // 서버로 put 요청 보내기
         fetch(`/my-token/${address}`, {
@@ -132,6 +133,7 @@
         .then(json => {
           alert(json.msg);
           if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
+          inputAmount.value = "";
         });
       });
 
@@ -141,7 +143,8 @@
         const selToAddress = document.getElementById("selToAddress");
         const from = selFromAddress.options[selFromAddress.selectedIndex].text;
         const to = selToAddress.options[selToAddress.selectedIndex].text;
-        const amount = document.getElementById("inputAmountForTransfer").value;
+        const inputAmount = document.getElementById("inputAmountForTransfer");
+        const amount = inputAmount.value;
 
         // 서버로 post 요청 보내기
         fetch('/my-token', {
@@ -153,6 +156,7 @@
         .then(json => {
           alert(json.msg);
           if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
+          inputAmount.value = "";
         });
       });
     </script>
