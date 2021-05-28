@@ -31,7 +31,7 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-router.post('/message', async function(req, res) {
+router.put('/message', async function(req, res) {
   const sender = req.body.sender;
   const newMessage = req.body.newMessage;
   try {
