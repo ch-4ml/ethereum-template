@@ -133,6 +133,7 @@
         .then(json => {
           alert(json.msg);
           if(json.blockNumber) blockNumber.innerHTML = json.blockNumber;
+          // 0, false, "", undefined, null 
           inputAmount.value = "";
         });
       });

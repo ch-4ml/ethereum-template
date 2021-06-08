@@ -76,6 +76,7 @@ async function getAllCandidates() {
     });
   }
 
+  // [{ name: 'Rama', votes: 0 }, { name: 'Nick', votes: 0 }, { name: 'Jose', votes: 0 }]
   return candidates;
 }
 

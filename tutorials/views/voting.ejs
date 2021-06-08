@@ -144,7 +144,7 @@
 
       // 후보 추가
       document.getElementById("btnSetCandidate").addEventListener("click", event => {
-        const inputName = document.getElementById("inputNameForVoting");
+        const inputName = document.getElementById("inputNameForSetCandidate");
         const name = inputName.value;
 
         fetch('/voting', {
@@ -166,11 +166,14 @@
                 <td>${json.candidates[i].votes}</td>
               </tr>`;
             }
+            
+            // 각 프레임에 존재하는 표를 모두 업데이트 해주세요.
             const tbodys = document.querySelectorAll("#tbodyCandidates");
             for(let tbody of tbodys) {
               tbody.innerHTML = tbodyContents;
             }
-            inputName.innerHTML = "";
+
+            inputName.value = "";
           }
         });
       });

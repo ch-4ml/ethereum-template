@@ -56,6 +56,7 @@ router.put("/:address", async function(req, res) {
 
 router.post("/", async function(req, res) {
   const { from, to, amount } = req.body;  // destructuring assignment
+
   try {
     const result = await sc.methods.transfer(to, amount).send({ from });
     const blockNumber = await web3.eth.getBlockNumber();

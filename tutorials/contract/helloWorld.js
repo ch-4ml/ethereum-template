@@ -1,4 +1,4 @@
-const address = "0x705E46f4490330a462B31cA9D0AbD9c56c7c627b";
+const address = "0xaadFCbc8D938D8faA3469b6773E957C479618Db0";
 const abi = [
   {
     "inputs": [
@@ -39,4 +39,4 @@ const abi = [
   }
 ];
 
-module.exports = { address, abi }
+module.exports = { address, abi };
