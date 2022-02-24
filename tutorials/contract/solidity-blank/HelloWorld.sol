@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.6;
+pragma solidity ^0.8.12;
 
 contract HelloWorld {
     // 자료형이 string이고, 가시성(Visibility)은 public이며,

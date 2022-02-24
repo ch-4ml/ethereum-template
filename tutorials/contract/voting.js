@@ -1,130 +1,130 @@
-const address = "0x05a0d488BfdAEb47a6B6BaEFEF7c35b53D47eCd1";
+const address = '0x029d5210581AC416187e7818c248Bff86728B0ee';
 const abi = [
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "bytes32",
-        "name": "candidateName",
-        "type": "bytes32"
+        internalType: 'bytes32[]',
+        name: 'candidateNames',
+        type: 'bytes32[]'
       }
     ],
-    "name": "setCandidate",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    stateMutability: 'nonpayable',
+    type: 'constructor'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "bytes32[]",
-        "name": "candidateNames",
-        "type": "bytes32[]"
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256'
       }
     ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
+    name: 'candidateList',
+    outputs: [
+      {
+        internalType: 'bytes32',
+        name: '',
+        type: 'bytes32'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
   },
   {
-    "inputs": [
+    inputs: [],
+    name: 'getAllCandidates',
+    outputs: [
       {
-        "internalType": "bytes32",
-        "name": "candidate",
-        "type": "bytes32"
+        internalType: 'bytes32[]',
+        name: '',
+        type: 'bytes32[]'
       }
     ],
-    "name": "voteForCandidate",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    stateMutability: 'view',
+    type: 'function'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        internalType: 'bytes32',
+        name: 'candidateName',
+        type: 'bytes32'
       }
     ],
-    "name": "candidateList",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
+    name: 'setCandidate',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
   },
   {
-    "inputs": [],
-    "name": "getAllCandidates",
-    "outputs": [
+    inputs: [
       {
-        "internalType": "bytes32[]",
-        "name": "",
-        "type": "bytes32[]"
+        internalType: 'bytes32',
+        name: 'candidate',
+        type: 'bytes32'
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
+    name: 'totalVotesFor',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "bytes32",
-        "name": "candidate",
-        "type": "bytes32"
+        internalType: 'bytes32',
+        name: 'candidate',
+        type: 'bytes32'
       }
     ],
-    "name": "totalVotesFor",
-    "outputs": [
+    name: 'validCandidate',
+    outputs: [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        internalType: 'bool',
+        name: '',
+        type: 'bool'
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: 'view',
+    type: 'function'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "bytes32",
-        "name": "candidate",
-        "type": "bytes32"
+        internalType: 'bytes32',
+        name: 'candidate',
+        type: 'bytes32'
       }
     ],
-    "name": "validCandidate",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
+    name: 'voteForCandidate',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
+        internalType: 'bytes32',
+        name: '',
+        type: 'bytes32'
       }
     ],
-    "name": "votesReceived",
-    "outputs": [
+    name: 'votesReceived',
+    outputs: [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256'
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: 'view',
+    type: 'function'
   }
 ];
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.6;
+pragma solidity ^0.8.12;
 
 contract MyToken {
     
@@ -17,7 +17,7 @@ contract MyToken {
     }
     
     // 토큰 전송
-    function transfer(address _to, uint256 _value) public {
+    function transfer(address _to, uint256 _value) public view {
         // 토큰을 전송하기 전 보유한 토큰이 전송하려는 토큰보다 많은지
         // 검사하는 코드를 여기에 작성하세요.
         // require(조건): 조건이 참인 경우에만 아래 코드를 이어서 실행

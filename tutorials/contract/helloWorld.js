@@ -1,41 +1,41 @@
-const address = "0xaadFCbc8D938D8faA3469b6773E957C479618Db0";
+const address = '0x4156F5c7D9a657cDe486f2C656e1068674220eaf';
 const abi = [
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "string",
-        "name": "initMessage",
-        "type": "string"
+        internalType: 'string',
+        name: 'initMessage',
+        type: 'string'
       }
     ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
+    stateMutability: 'nonpayable',
+    type: 'constructor'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "string",
-        "name": "newMessage",
-        "type": "string"
+        internalType: 'string',
+        name: 'newMessage',
+        type: 'string'
       }
     ],
-    "name": "update",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    name: 'update',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
   },
   {
-    "inputs": [],
-    "name": "message",
-    "outputs": [
+    inputs: [],
+    name: 'message',
+    outputs: [
       {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
+        internalType: 'string',
+        name: '',
+        type: 'string'
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: 'view',
+    type: 'function'
   }
 ];
 
