@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.7.6;
+pragma solidity ^0.8.12;
 
 contract OreOreCoin {
     // 상태 변수 선언

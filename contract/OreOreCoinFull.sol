@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.6;
+pragma solidity ^0.8.12;
 
 // 소유자 관리용 계약
 contract Owned {
@@ -41,7 +41,7 @@ contract Members is Owned {
         string name; // 등급명
         uint256 times; // 최저 거래 회수
         uint256 sum; // 최저 거래 금액
-        int8 rate; // 캐시백 비율
+        uint8 rate; // 캐시백 비율
     }
     // 거래 이력용 구조체
     struct History {
@@ -62,7 +62,7 @@ contract Members is Owned {
     }
      
     // (7) 회원 등급 추가
-    function pushStatus(string memory _name, uint256 _times, uint256 _sum, int8 _rate) public onlyOwner {
+    function pushStatus(string memory _name, uint256 _times, uint256 _sum, uint8 _rate) public onlyOwner {
         status.push(MemberStatus({
             name: _name,
             times: _times,
@@ -72,7 +72,7 @@ contract Members is Owned {
     }
  
     // (8) 회원 등급 내용 변경
-    function editStatus(uint256 _index, string memory _name, uint256 _times, uint256 _sum, int8 _rate) public onlyOwner {
+    function editStatus(uint256 _index, string memory _name, uint256 _times, uint256 _sum, uint8 _rate) public onlyOwner {
         if (_index < status.length) {
             status[_index].name = _name;
             status[_index].times = _times;
@@ -87,7 +87,7 @@ contract Members is Owned {
         tradingHistory[_member].sum += _value;
         // 새로운 회원 등급 결정(거래마다 실행)
         uint256 index;
-        int8 tmprate;
+        uint8 tmprate;
         for (uint i = 0; i < status.length; i++) {
             // 최저 거래 횟수, 최저 거래 금액 충족 시 가장 캐시백 비율이 좋은 등급으로 설정
             if (tradingHistory[_member].times >= status[i].times &&
@@ -100,13 +100,13 @@ contract Members is Owned {
     }
 
     // (10) 캐시백 비율 획득(회원의 등급에 해당하는 비율 확인)
-    function getCashbackRate(address _member) public view returns (int8 rate) {
+    function getCashbackRate(address _member) public view returns (uint8 rate) {
         rate = status[tradingHistory[_member].statusIndex].rate;
     }
 }
      
 // (11) 회원 관리 기능이 구현된 가상 화폐
-contract OreOreCoin is Owned{
+contract OreOreCoin is Owned {
     // 상태 변수 선언
     string public name; // 토큰 이름
     string public symbol; // 토큰 단위

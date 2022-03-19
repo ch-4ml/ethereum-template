@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.7.6;
+pragma solidity ^0.8.12;
 
 // 소유자 관리용 계약
 contract Owned {
@@ -38,7 +37,7 @@ contract OreOreCoin is Owned{
     uint256 public totalSupply; // 토큰 총량
     mapping (address => uint256) public balanceOf; // 각 주소의 잔고
     mapping (address => int8) public blackList; // 블랙리스트
-    mapping (address => int8) public cashbackRate; // 각 주소의 캐시백 비율
+    mapping (address => uint8) public cashbackRate; // 각 주소의 캐시백 비율
      
     // 이벤트 알림
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -46,7 +45,7 @@ contract OreOreCoin is Owned{
     event DeleteFromBlacklist(address indexed target);
     event RejectedPaymentToBlacklistedAddr(address indexed from, address indexed to, uint256 value);
     event RejectedPaymentFromBlacklistedAddr(address indexed from, address indexed to, uint256 value);
-    event SetCashback(address indexed addr, int8 rate);
+    event SetCashback(address indexed addr, uint8 rate);
     event Cashback(address indexed from, address indexed to, uint256 value);
     
     // 생성자
@@ -71,16 +70,11 @@ contract OreOreCoin is Owned{
     }
     
     // 캐시백 비율 설정 
-    function setCashbackRate(int8 _rate) public {
-        if (_rate < 1) {
-            _rate = -1;
-        } else if (_rate > 100) {
+    function setCashbackRate(uint8 _rate) public {
+        if (_rate > 100) {
             _rate = 100;
         }
         cashbackRate[msg.sender] = _rate;
-        if (_rate < 1) {
-            _rate = 0;
-        }
         emit SetCashback(msg.sender, _rate);
     }
 
