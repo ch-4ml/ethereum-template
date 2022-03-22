@@ -46,7 +46,7 @@
         const message = document.getElementById("message");
         const blockNumber = document.getElementById("blockNumber");
 
-        // 서버로 post 요청 보내기
+        // 서버로 PUT 요청 보내기
         fetch("/hello-world/message", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
