@@ -24,7 +24,7 @@ geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --mine
 # 파일을 이용해서 계정 잠금 해제
 echo password#1> c:\Geth\password.dat
 
-geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --allow-insecure-unlock --unlock 1 --password c:\Geth\password.dat --http --http.addr "0.0.0.0" --http.port 8545 --http.corsdomain "*" --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --verbosity 6 2>> c:\Geth\geth3.log
+geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --allow-insecure-unlock --unlock 0,1 --password c:\Geth\password.dat --http --http.addr "0.0.0.0" --http.port 8545 --http.corsdomain "*" --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --verbosity 6 2>> c:\Geth\geth3.log
 
 # Log를 Detail 수준까지 표시하는 옵션 추가
 geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --allow-insecure-unlock --unlock 1 --password c:\Geth\password.dat --http --http.addr "0.0.0.0" --http.port 8545 --http.corsdomain "*" --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --verbosity 6 2>> c:\Geth\geth4.log
