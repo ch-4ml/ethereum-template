@@ -1,0 +1,30 @@
+# Geth 명령
+
+# geth 초기화
+geth -datadir C:\Geth init "c:\Program Files"\Geth\genesis.json
+
+# geth 구동 및 javascript console 실행
+geth -networkid 18282  -nodiscover -maxpeers 0 -datadir c:\Geth console
+
+# console에 표시되는 log를 파일에 저장
+geth --networkid 18282 --nodiscover --maxpeers 0 --datadir c:\Geth console 2>> c:\Geth\geth.log
+
+# 채굴 수행, HTTP-RPC 활성화 옵션 추가 
+geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --http 2>> c:\Geth\geth2.log
+
+# HTTP-RPC 옵션이 활성화된 실행 중인 네트워크에 RPC로 접속
+geth attach rpc:http://localhost:8545
+
+# HTTP-RPC의 다양한 옵션 추가
+geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --allow-insecure-unlock --http --http.addr "0.0.0.0" --http.port 8545 --http.corsdomain "*" --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" 2>> c:\Geth\geth2.log
+
+# 계정 잠금 해제 옵션 추가
+geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --allow-insecure-unlock --unlock 1 --http --http.addr "0.0.0.0" --http.port 8545 --http.corsdomain "*" --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" 2>> c:\Geth\geth3.log
+
+# 파일을 이용해서 계정 잠금 해제
+echo password#1> c:\Geth\password.dat
+
+geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --allow-insecure-unlock --unlock 1 --password c:\Geth\password.dat --http --http.addr "0.0.0.0" --http.port 8545 --http.corsdomain "*" --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --verbosity 6 2>> c:\Geth\geth3.log
+
+# Log를 Detail 수준까지 표시하는 옵션 추가
+geth --networkid 18283 --nodiscover --maxpeers 0 --datadir c:\Geth --mine --miner.threads 1 --allow-insecure-unlock --unlock 1 --password c:\Geth\password.dat --http --http.addr "0.0.0.0" --http.port 8545 --http.corsdomain "*" --http.api "admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --verbosity 6 2>> c:\Geth\geth4.log
